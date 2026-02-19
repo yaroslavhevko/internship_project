@@ -25,6 +25,7 @@ class Page:
             message=f'Element not clickable by locator {locator}'
         )
 
+
     def wait_until_element_invisible(self, *locator):
         self.driver.wait.until(
             EC.invisibility_of_element_located(locator),
@@ -37,11 +38,16 @@ class Page:
             message=f'Element not clickable by locator {locator}'
         )
 
-    def wait_until_clickable_click(self, *locator):
-        self.driver.wait.until(
-            EC.element_to_be_clickable(locator),
-            message=f'Element not clickable by locator {locator}'
-        ).click()
+    def wait_until_clickable_click(self, *locator, timeout=10):
+       # self.driver.wait.until(
+       #     EC.element_to_be_clickable(locator),
+      #     message=f'Element not clickable by locator {locator}'
+       # ).click()
+        wait = WebDriverWait(self.driver, timeout)
+        element = wait.until(
+            EC.presence_of_element_located(locator)
+        )
+        self.driver.execute_script("arguments[0].click();", element)
 
     def verify_partial_text(self, expected_partial_text, *locator):
         actual_text = self.find_element(*locator).text

@@ -4,7 +4,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 class CommunityPage(Page):
     SUPPORT_BUTTON =(By.XPATH,
-                     "//a[@target='_blank'[contains(@href,'api.whatsapp.com/send?phone=971502091446')]]"
+                     "//a[@target='_blank' and contains(@href,'api.whatsapp.com/send?phone=971502091446')]"
                      )
 
     def verify_right_page(self):
@@ -15,8 +15,8 @@ class CommunityPage(Page):
         self.wait_until_clickable_click(*self.SUPPORT_BUTTON)
 
     def wait_until_windows_count_is(self, expected_windows_count=2):
-        self.click_contact_support()
-        self.wait_until_windows_count_is(expected_windows_count)
+        super().wait_until_windows_count_is(expected_windows_count)
+
 
     def switch_to_newest_tab(self):
-        self.switch_to_newest_tab()
+        super().switch_to_newest_tab()
