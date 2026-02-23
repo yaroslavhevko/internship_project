@@ -3,9 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 class CommunityPage(Page):
-    SUPPORT_BUTTON =(By.XPATH,
-                     "//a[@target='_blank' and contains(@href,'api.whatsapp.com/send?phone=971502091446')]"
-                     )
+    SUPPORT_BUTTON =(By.CSS_SELECTOR, "a[target='_blank'][href*='api.whatsapp.com']"
+                     )    #(By.XPATH, "//a[@target='_blank' and contains(@href,'api.whatsapp.com/send?phone=971502091446')]")
 
     def verify_right_page(self):
         self.verify_url('https://soft.reelly.io/community')

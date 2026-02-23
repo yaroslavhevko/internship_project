@@ -24,7 +24,11 @@ class Page:
             EC.element_to_be_clickable(locator),
             message=f'Element not clickable by locator {locator}'
         )
-
+    def wait_until_element_visible(self, *locator):
+        self.driver.wait.until(
+            EC.element_to_be_clickable(locator),
+            message=f'Element not visible by locator {locator}'
+        )
 
     def wait_until_element_invisible(self, *locator):
         self.driver.wait.until(
@@ -48,6 +52,16 @@ class Page:
             EC.presence_of_element_located(locator)
         )
         self.driver.execute_script("arguments[0].click();", element)
+
+    def scroll(self, *locator, timeout=15):
+
+        wait = WebDriverWait(self.driver, timeout)
+        element = wait.until(
+            EC.visibility_of_element_located(locator)
+        )
+
+        self.driver.execute_script("arguments[0].click();", element)
+
 
     def verify_partial_text(self, expected_partial_text, *locator):
         actual_text = self.find_element(*locator).text
