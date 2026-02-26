@@ -23,7 +23,7 @@ def browser_init(context, scenario_name):
     """
     Headless Chrome
     """
-    #context.driver = webdriver.Chrome()
+    context.driver = webdriver.Chrome()
 
     #options = webdriver.ChromeOptions()
     #options.add_argument('headless')
@@ -32,26 +32,26 @@ def browser_init(context, scenario_name):
     """
     Headless Firefox
     """
-   # context.driver = webdriver.Firefox()
+    # context.driver = webdriver.Firefox()
 
     #options = webdriver.FirefoxOptions()
-   #options.add_argument('--headless')
+    #options.add_argument('--headless')
     #context.driver = webdriver.Firefox(options=options)
 
-    bs_user = 'yaroslavhevkoqwf_DRiFwz'
-    bs_key = 'UUwoTzfmirZpRwsnvyzz'
+   # bs_user = 'yaroslavhevkoqwf_DRiFwz'
+   # bs_key = 'UUwoTzfmirZpRwsnvyzz'
 
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    options = Options()
-    bstack_options = {
-        "os": "Windows",
-        "osVersion": "10",
-        "browserVersion": "latest",
-        'browserName': 'Chrome',
-        'sessionName': scenario_name,
-    }
-    options.set_capability('bstack:options', bstack_options)
-    context.driver = webdriver.Remote(command_executor=url, options=options)
+   # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+   # options = Options()
+   # bstack_options = {
+   #     "os": "Windows",
+   #     "osVersion": "10",
+   #     "browserVersion": "latest",
+   #     'browserName': 'Chrome',
+   #     'sessionName': scenario_name,
+   # }
+   # options.set_capability('bstack:options', bstack_options)
+  #  context.driver = webdriver.Remote(command_executor=url, options=options)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)

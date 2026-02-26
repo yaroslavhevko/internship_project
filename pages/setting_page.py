@@ -8,3 +8,5 @@ class SettingPage(Page):
     def click_community(self):
         self.wait_until_clickable(*self.COMMUNITY_BTN)
         self.click(*self.COMMUNITY_BTN)
+        from time import sleep
+        sleep(5)

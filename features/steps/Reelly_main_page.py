@@ -9,4 +9,7 @@ def open_main_page(context):
 
 @when('Click on the setting option')
 def click_setting(context):
+    from time import sleep
+    sleep(5)
     context.app.main_page.click_setting()
+    sleep(5)
