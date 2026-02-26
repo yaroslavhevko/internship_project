@@ -32,7 +32,7 @@ def browser_init(context, scenario_name):
     """
     Headless Firefox
     """
-    # context.driver = webdriver.Firefox()
+    #context.driver = webdriver.Firefox()
 
     #options = webdriver.FirefoxOptions()
     #options.add_argument('--headless')
