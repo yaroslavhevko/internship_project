@@ -53,14 +53,10 @@ class Page:
         )
         self.driver.execute_script("arguments[0].click();", element)
 
-    def scroll(self, *locator, timeout=15):
+    def scroll(self, locator):
 
-        wait = WebDriverWait(self.driver, timeout)
-        element = wait.until(
-            EC.visibility_of_element_located(locator)
-        )
-
-        self.driver.execute_script("arguments[0].click();", element)
+        element = self.driver.find_element(*locator)
+        self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
 
 
     def verify_partial_text(self, expected_partial_text, *locator):

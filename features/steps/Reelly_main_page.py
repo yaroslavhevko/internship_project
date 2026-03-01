@@ -7,9 +7,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 def open_main_page(context):
     context.app.main_page.open_main_page()
 
+@when('Click on Market Offers')
+def click_market_offer(context):
+    context.app.main_page.click_market_offer()
+
 @when('Click on the setting option')
 def click_setting(context):
-    from time import sleep
-    sleep(5)
+    #from time import sleep
+    #sleep(5)
     context.app.main_page.click_setting()
-    sleep(5)
+   # sleep(5)

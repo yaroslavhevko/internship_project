@@ -23,7 +23,7 @@ def browser_init(context, scenario_name):
     """
     Headless Chrome
     """
-    context.driver = webdriver.Chrome()
+
 
     #options = webdriver.ChromeOptions()
     #options.add_argument('headless')
@@ -37,21 +37,36 @@ def browser_init(context, scenario_name):
     #options = webdriver.FirefoxOptions()
     #options.add_argument('--headless')
     #context.driver = webdriver.Firefox(options=options)
+    """
+    BrowserStack Mobile session
+    """
 
-   # bs_user = 'yaroslavhevkoqwf_DRiFwz'
-   # bs_key = 'UUwoTzfmirZpRwsnvyzz'
+    bs_user = 'yaroslavhevkoqwf_DRiFwz'
+    bs_key = 'UUwoTzfmirZpRwsnvyzz'
 
-   # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-   # options = Options()
-   # bstack_options = {
-   #     "os": "Windows",
-   #     "osVersion": "10",
-   #     "browserVersion": "latest",
-   #     'browserName': 'Chrome',
-   #     'sessionName': scenario_name,
-   # }
-   # options.set_capability('bstack:options', bstack_options)
-  #  context.driver = webdriver.Remote(command_executor=url, options=options)
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    options = Options()
+    chrome_prefs = {
+        "profile.default_content_setting_values.notifications": 2
+    }
+    options.add_experimental_option("prefs", chrome_prefs)
+    bstack_options = {
+        "os": "Android",
+        "osVersion": "13.0",
+        "deviceName": "Samsung Galaxy S23+",
+        'browserName': 'Chrome',
+        'sessionName': scenario_name,
+    }
+    options.set_capability('bstack:options', bstack_options)
+    context.driver = webdriver.Remote(command_executor=url, options=options)
+
+    mobile_emulation = {"deviceName": "Samsung Galaxy S8+"}
+    options = Options()
+    options.add_experimental_option("mobileEmulation", mobile_emulation)
+    context.driver = webdriver.Chrome(options=options)
+    context.is_mobile = True
+
+
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)

@@ -11,6 +11,7 @@ class CommunityPage(Page):
         self.verify_url_contains('community')
 
     def click_contact_support(self):
+        self.scroll(self.SUPPORT_BUTTON)
         self.wait_until_clickable_click(*self.SUPPORT_BUTTON)
 
     def wait_until_windows_count_is(self, expected_windows_count=2):
